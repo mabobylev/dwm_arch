@@ -8,9 +8,11 @@
 
 ## Installation
 
-- Edit config.mk to match your local setup (dwm is installed into the /usr/local namespace by default).
+- Edit config.mk to match your local setup (dwm is installed into
+  the /usr/local namespace by default).
 
-- Afterwards enter the following command to build and install dwm (if necessary as root):
+- Afterwards enter the following command to build and install dwm (if
+  necessary as root):
 
 ```
     make clean install
@@ -24,7 +26,8 @@
     exec dwm
 ```
 
-- In order to connect dwm to a specific display, make sure that the DISPLAY environment variable is set correctly, e.g.:
+- In order to connect dwm to a specific display, make sure that
+  the DISPLAY environment variable is set correctly, e.g.:
 
 ```
     DISPLAY=foo.bar:1 exec dwm
