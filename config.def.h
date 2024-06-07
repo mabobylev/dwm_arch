@@ -3,7 +3,7 @@
 /* appearance */
 static const unsigned int borderpx = 3; /* border pixel of windows */
 static const unsigned int gappx = 5;    /* gaps between windows */
-static const unsigned int snap = 36;    /* snap pixel */
+static const unsigned int snap = 32;    /* snap pixel */
 static const unsigned int systraypinning =
     0; /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor
           X */
@@ -64,6 +64,8 @@ static const Rule rules[] = {
     {"Gimp", NULL, NULL, 1 << 5, 1, -1},
     {"Yad", NULL, NULL, 1 << 7, 1, -1},
     {"steam_proton", NULL, NULL, 1 << 7, 1, -1},
+    {"pavucontrol", NULL, NULL, 0, 1, -1},
+    {"Lxappearance", NULL, NULL, 0, 1, -1},
 };
 
 /* layout(s) */
