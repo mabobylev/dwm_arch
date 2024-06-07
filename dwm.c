@@ -1055,7 +1055,7 @@ void drawbar(Monitor *m) {
         drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
     drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
     if (occ & 1 << i)
-      drw_rect(drw, x + boxw, bh - (2 * boxs + 1), w - (2 * boxw + 1), boxw - 2,
+      drw_rect(drw, x + boxs, boxs, w - (2 * boxs + 1), boxs + 1,
                m == selmon && selmon->sel && selmon->sel->tags & 1 << i,
                urg & 1 << i);
     x += w;
@@ -2028,7 +2028,7 @@ void setup(void) {
   if (!drw_fontset_create(drw, fonts, LENGTH(fonts)))
     die("no fonts could be loaded.");
   lrpad = drw->fonts->h;
-  bh = drw->fonts->h + 4;
+  bh = drw->fonts->h + 8;
   updategeom();
   /* init atoms */
   utf8string = XInternAtom(dpy, "UTF8_STRING", False);

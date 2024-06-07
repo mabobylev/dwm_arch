@@ -3,7 +3,7 @@
 /* appearance */
 static const unsigned int borderpx = 3; /* border pixel of windows */
 static const unsigned int gappx = 5;    /* gaps between windows */
-static const unsigned int snap = 32;    /* snap pixel */
+static const unsigned int snap = 36;    /* snap pixel */
 static const unsigned int systraypinning =
     0; /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor
           X */
@@ -23,10 +23,10 @@ static const char dmenufont[] =
     "JetBrainsMonoNL:weight=medium:size=12:antialias=true:hinting=true";
 static char normbgcolor[] = "#2E3440";
 static char normbordercolor[] = "#2E3440";
-static char normfgcolor[] = "#D8DEE9";
-static char selfgcolor[] = "#A3BE8C";
-static char selbordercolor[] = "#A3BE8C";
-static char selbgcolor[] = "#2E3440";
+static char normfgcolor[] = "#8FBCBB";
+static char selfgcolor[] = "#D8DEE9";
+static char selbordercolor[] = "#81A1C1";
+static char selbgcolor[] = "#3B4252";
 static char *colors[][3] = {
     /*               fg           bg           border   */
     [SchemeNorm] = {normfgcolor, normbgcolor, normbordercolor},
