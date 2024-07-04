@@ -14,7 +14,7 @@
 - Afterwards enter the following command to build and install dwm (if
   necessary as root):
 
-```
+```bash
     make clean install
 ```
 
@@ -22,14 +22,14 @@
 
 - Add the following line to your .xinitrc to start dwm using startx:
 
-```
+```bash
     exec dwm
 ```
 
 - In order to connect dwm to a specific display, make sure that
   the DISPLAY environment variable is set correctly, e.g.:
 
-```
+```bash
     DISPLAY=foo.bar:1 exec dwm
 ```
 
@@ -38,7 +38,7 @@
 - In order to display status info in the bar, you can do something
   like this in your .xinitrc:
 
-```
+```bash
     while xsetroot -name "`date` `uptime | sed 's/.*,//'`"
     do
     	sleep 1
