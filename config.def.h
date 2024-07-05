@@ -36,7 +36,7 @@ static char *colors[][3] = {
 
 static const char *const autostart[] = {
     /* Autostart applications for dwm */
-    "dex", "--autostart", "--environment", "dwm", NULL,
+    "dex", "--autostart", "--environment", "i3", NULL,
     /* Autostast compositor*/
     /*"dwmblocks", NULL, */
     /* Autostart slstatus */
