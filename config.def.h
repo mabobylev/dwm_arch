@@ -9,19 +9,17 @@ static const unsigned int systraypinning =
           X */
 static const unsigned int systrayonleft =
     0; /* 0: systray in the right corner, >0: systray on left of status text */
-static const unsigned int systrayspacing = 2; /* systray spacing */
+static const unsigned int systrayspacing = 3; /* systray spacing */
 static const int systraypinningfailfirst =
     1; /* 1: if pinning fails, display systray on the first monitor, False:
           display systray on the last monitor*/
 static const int showsystray = 1; /* 0 means no systray */
 static const int showbar = 1;     /* 0 means no bar */
 static const int topbar = 1;      /* 0 means bottom bar */
-static const char *fonts[] = {
-    "Iosevka Nerd Font:weight=medium:size=12:antialias=true:hinting=true",
-    "Symbols Nerd Font:weight=medium:size=12",
-    "Font Awesome 5 Free:weight=medium:size=12"};
-static const char dmenufont[] =
-    "Iosevka Nerd Font:weight=medium:size=18:antialias=true:hinting=true";
+static const char *fonts[] = {"JetBrainsMono Nerd Font:weight=medium:size=11",
+                              "Symbols Nerd Font:weight=medium:size=12",
+                              "Font Awesome 6 Free:weight=medium:size=12"};
+static const char dmenufont[] = "JetBrainsMono Nerd Font:weight=medium:size=14";
 static char normbgcolor[] = "#2E3440";
 static char normbordercolor[] = "#2E3440";
 static char normfgcolor[] = "#8FBCBB";
@@ -36,15 +34,10 @@ static char *colors[][3] = {
 
 static const char *const autostart[] = {
     /* Autostart applications for dwm */
-    "dex", "--autostart", "--environment", "i3", NULL,
-    /* Autostast compositor*/
-    /*"dwmblocks", NULL, */
     /* Autostart slstatus */
-    "slstatus", NULL,
-    /* NetworkManager Applet*/
-    "nm-applet", NULL,
+    "slstatus", NULL, "dex", "--autostart", "--environment", "i3", NULL,
     /* Autostart terminal */
-    "alacritty", NULL, NULL /* terminate */
+    "kitty", NULL, NULL /* terminate */
 };
 
 /* tagging */
@@ -59,7 +52,7 @@ static const Rule rules[] = {
      */
     /* class      instance    title       tags mask     isfloating   monitor */
     {"firefox", NULL, NULL, 1 << 1, 1, -1},
-    {"Nemo", NULL, NULL, 1 << 2, 1, -1},
+    {"Thunar", NULL, NULL, 1 << 2, 1, -1},
     {"Code", NULL, NULL, 1 << 3, 0, -1},
     {"TelegramDesktop", NULL, NULL, 1 << 4, 1, -1},
     {"Gimp", NULL, NULL, 1 << 5, 1, -1},
@@ -70,6 +63,7 @@ static const Rule rules[] = {
     {"worldoftanks.exe", NULL, NULL, 1 << 7, 1, -1},
     {"pavucontrol", NULL, NULL, 0, 1, -1},
     {"Lxappearance", NULL, NULL, 0, 1, -1},
+    {"Hiddify", NULL, NULL, 0, 1, -1},
 };
 
 /* layout(s) */
@@ -109,16 +103,23 @@ static const char *dmenucmd[] = {"dmenu_run", "-m",  dmenumon,       "-fn",
                                  dmenufont,   "-nb", normbgcolor,    "-nf",
                                  normfgcolor, "-sb", selbordercolor, "-sf",
                                  selfgcolor,  NULL};
-static const char *termcmd[] = {"alacritty", NULL};
+static const char *termcmd[] = {"kitty", NULL};
 static const char *browser[] = {"firefox", NULL};
-static const char *filemgr[] = {"nemo", NULL};
-static const char *editor[] = {"alacritty", "-e", "nvim", NULL};
-static const char *tmuxcmd[] = {"alacritty", "-e", "tmux", NULL};
+static const char *filemgr[] = {"thunar", NULL};
+static const char *editor[] = {"kitty", "-e", "nvim", NULL};
+static const char *zellicmd[] = {"kitty", "-e", "zellij", NULL};
 static const char *roficmd[] = {"rofi", "-show", "drun", NULL};
+static const char *exitcmd[] = {
+    "rofi",
+    "-show",
+    "power-menu",
+    "-modi",
+    "power-menu:rofi-power-menu --choices=logout/shutdown/reboot",
+    NULL};
 
 static const Key keys[] = {
     /* modifier                     key        function        argument */
-    {MOD1KEY, XK_Return, spawn, {.v = tmuxcmd}},
+    {MOD1KEY, XK_Return, spawn, {.v = zellicmd}},
     {MOD4KEY, XK_Return, spawn, {.v = termcmd}},
     {MOD1KEY, XK_d, spawn, {.v = dmenucmd}},
     {MOD4KEY, XK_d, spawn, {.v = roficmd}},
@@ -156,10 +157,11 @@ static const Key keys[] = {
     {MOD1KEY, XK_Left, viewprev, {0}},
     {MOD1KEY | ShiftMask, XK_Right, tagtonext, {0}},
     {MOD1KEY | ShiftMask, XK_Left, tagtoprev, {0}},
+    {MOD1KEY | ShiftMask, XK_e, quit, {0}},
+    {MOD4KEY | ShiftMask, XK_e, spawn, {.v = exitcmd}},
     TAGKEYS(XK_1, 0) TAGKEYS(XK_2, 1) TAGKEYS(XK_3, 2) TAGKEYS(XK_4, 3)
         TAGKEYS(XK_5, 4) TAGKEYS(XK_6, 5) TAGKEYS(XK_7, 6) TAGKEYS(XK_8, 7)
-            TAGKEYS(XK_9, 8){MOD4KEY | ShiftMask, XK_e, quit, {0}},
-};
+            TAGKEYS(XK_9, 8)};
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle,
