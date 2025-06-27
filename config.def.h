@@ -96,6 +96,8 @@ static const Layout layouts[] = {
     .v = (const char *[]) { "/bin/sh", "-c", cmd, NULL }                       \
   }
 
+#include <X11/XF86keysym.h>
+
 /* commands */
 /* component of dmenucmd, manipulated in spawn() */
 static char dmenumon[2] = "0";
@@ -116,6 +118,13 @@ static const char *exitcmd[] = {
     "-modi",
     "power-menu:rofi-power-menu --choices=logout/shutdown/reboot",
     NULL};
+
+static const char *up_vol[] = {"pactl", "set-sink-volume", "@DEFAULT_SINK@",
+                               "+10%", NULL};
+static const char *down_vol[] = {"pactl", "set-sink-volume", "@DEFAULT_SINK@",
+                                 "-10%", NULL};
+static const char *mute_vol[] = {"pactl", "set-sink-mute", "@DEFAULT_SINK@",
+                                 "toggle", NULL};
 
 static const Key keys[] = {
     /* modifier                     key        function        argument */
@@ -159,6 +168,9 @@ static const Key keys[] = {
     {MOD1KEY | ShiftMask, XK_Left, tagtoprev, {0}},
     {MOD1KEY | ShiftMask, XK_e, quit, {0}},
     {MOD4KEY | ShiftMask, XK_e, spawn, {.v = exitcmd}},
+    {0, XF86XK_AudioMute, spawn, {.v = mute_vol}},
+    {0, XF86XK_AudioLowerVolume, spawn, {.v = down_vol}},
+    {0, XF86XK_AudioRaiseVolume, spawn, {.v = up_vol}},
     TAGKEYS(XK_1, 0) TAGKEYS(XK_2, 1) TAGKEYS(XK_3, 2) TAGKEYS(XK_4, 3)
         TAGKEYS(XK_5, 4) TAGKEYS(XK_6, 5) TAGKEYS(XK_7, 6) TAGKEYS(XK_8, 7)
             TAGKEYS(XK_9, 8)};
