@@ -18,7 +18,7 @@ static const int showbar = 1;     /* 0 means no bar */
 static const int topbar = 1;      /* 0 means bottom bar */
 static const char *fonts[] = {"JetBrainsMono Nerd Font:weight=medium:size=11",
                               "Symbols Nerd Font:weight=medium:size=12",
-                              "Font Awesome 6 Free:weight=medium:size=12"};
+                              "Font Awesome 7 Free:weight=medium:size=12"};
 static const char dmenufont[] = "JetBrainsMono Nerd Font:weight=medium:size=14";
 static char normbgcolor[] = "#2E3440";
 static char normbordercolor[] = "#2E3440";
@@ -52,6 +52,7 @@ static const Rule rules[] = {
      */
     /* class      instance    title       tags mask     isfloating   monitor */
     {"firefox", NULL, NULL, 1 << 1, 1, -1},
+    {"Yandex-browser", NULL, NULL, 1 << 1, 1, -1},
     {"Thunar", NULL, NULL, 1 << 2, 1, -1},
     {"Code", NULL, NULL, 1 << 3, 0, -1},
     {"TelegramDesktop", NULL, NULL, 1 << 4, 1, -1},
