@@ -16,10 +16,10 @@ static const int systraypinningfailfirst =
 static const int showsystray = 1; /* 0 means no systray */
 static const int showbar = 1;     /* 0 means no bar */
 static const int topbar = 1;      /* 0 means bottom bar */
-static const char *fonts[] = {"JetBrainsMono Nerd Font:weight=medium:size=11",
+static const char *fonts[] = {"Ubuntu Nerd Font:weight=medium:size=11",
                               "Symbols Nerd Font:weight=medium:size=12",
                               "Font Awesome 7 Free:weight=medium:size=12"};
-static const char dmenufont[] = "JetBrainsMono Nerd Font:weight=medium:size=14";
+static const char dmenufont[] = "Ubuntu Nerd Font:weight=medium:size=14";
 static char normbgcolor[] = "#2E3440";
 static char normbordercolor[] = "#2E3440";
 static char normfgcolor[] = "#8FBCBB";
@@ -51,6 +51,7 @@ static const Rule rules[] = {
      *	WM_NAME(STRING) = title
      */
     /* class      instance    title       tags mask     isfloating   monitor */
+    {"Luakit", NULL, NULL, 1 << 1, 1, -1},
     {"firefox", NULL, NULL, 1 << 1, 1, -1},
     {"Yandex-browser", NULL, NULL, 1 << 1, 1, -1},
     {"Thunar", NULL, NULL, 1 << 2, 1, -1},
@@ -59,6 +60,7 @@ static const Rule rules[] = {
     {"Gimp", NULL, NULL, 1 << 5, 1, -1},
     {"Yad", NULL, NULL, 1 << 7, 1, -1},
     {"steam_proton", NULL, NULL, 1 << 7, 1, -1},
+    {"steam_app_0", NULL, NULL, 1 << 7, 1, -1},
     {"PortProton", NULL, NULL, 1 << 7, 1, -1},
     {"lgc.exe", NULL, NULL, 1 << 7, 1, -1},
     {"worldoftanks.exe", NULL, NULL, 1 << 7, 1, -1},
@@ -107,7 +109,7 @@ static const char *dmenucmd[] = {"dmenu_run", "-m",  dmenumon,       "-fn",
                                  normfgcolor, "-sb", selbordercolor, "-sf",
                                  selfgcolor,  NULL};
 static const char *termcmd[] = {"kitty", NULL};
-static const char *browser[] = {"firefox", NULL};
+static const char *browser[] = {"luakit", NULL};
 static const char *filemgr[] = {"thunar", NULL};
 static const char *editor[] = {"kitty", "-e", "nvim", NULL};
 static const char *zellicmd[] = {"kitty", "-e", "zellij", NULL};
@@ -126,12 +128,18 @@ static const char *down_vol[] = {"pactl", "set-sink-volume", "@DEFAULT_SINK@",
                                  "-10%", NULL};
 static const char *mute_vol[] = {"pactl", "set-sink-mute", "@DEFAULT_SINK@",
                                  "toggle", NULL};
+static const char *dmenusys[] = {"dmenuctl", NULL};
+static const char *audioout[] = {"dmenuctl", "audio", NULL};
+static const char *dmenunotes[] = {"dmenuctl", "notes", NULL};
 
 static const Key keys[] = {
     /* modifier                     key        function        argument */
     {MOD1KEY, XK_Return, spawn, {.v = zellicmd}},
     {MOD4KEY, XK_Return, spawn, {.v = termcmd}},
     {MOD1KEY, XK_d, spawn, {.v = dmenucmd}},
+    {MOD1KEY, XK_q, spawn, {.v = dmenusys}},
+    {MOD1KEY, XK_a, spawn, {.v = audioout}},
+    {MOD1KEY, XK_n, spawn, {.v = dmenunotes}},
     {MOD4KEY, XK_d, spawn, {.v = roficmd}},
     {MOD4KEY, XK_v, spawn, {.v = editor}},
     {MOD4KEY, XK_n, spawn, {.v = filemgr}},
